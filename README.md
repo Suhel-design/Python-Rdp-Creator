@@ -2,7 +2,7 @@
 
 It takes 4-5 minutes for installation
 
-Visit http://remotedesktop.google.com/headless and copy the command after Authentication
+Visit <a href="http://example.com/" target="_blank">http://remotedesktop.google.com/headless</a> and copy the command after Authentication
 
 **Download run.py File in linux**
 ```
@@ -16,4 +16,5 @@ python3 run.py
 1. Enter your CRP: Visit http://remotedesktop.google.com/headless and copy the command after Authentication and paste
 2. Enter Pin (more or equal to 6 digits): 123456 (type: "integer")
 
-**RDP created succesfully move to** https://remotedesktop.google.com/access
+**RDP created succesfully move to** <a href="http://example.com/" target="_blank">https://remotedesktop.google.com/access
+</a>

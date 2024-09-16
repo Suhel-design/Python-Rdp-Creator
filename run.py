@@ -85,9 +85,9 @@ class CRD:
     @staticmethod
     def finish(user):
         print("Finalizing")
-        os.system(f"adduser {user} chrome-remote-desktop")
+        os.system(f"adduser $(hostname) chrome-remote-desktop")
         command = f"{CRP} --pin={Pin}"
-        os.system(f"su - {user} -c '{command}'")
+        os.system(f"su - $(hostname) -c '{command}'")
         os.system("service chrome-remote-desktop start")
 
 

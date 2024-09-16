@@ -27,8 +27,6 @@ print("RRP: Visit http://remotedesktop.google.com/headless and copy the command 
 CRP = input("Enter your CRP: ")
 
 Pin = input("Enter Pin (more or equal to 6 digits):")
-print('Autostart Yes:Y/No:N')
-Autostart = input("Autostart Enter Y/N:")
 
 #Run in cell 3
 class CRD:
@@ -87,21 +85,6 @@ class CRD:
     @staticmethod
     def finish(user):
         print("Finalizing")
-        if Autostart.upper() == 'Y':
-            os.makedirs(f"/home/{user}/.config/autostart", exist_ok=True)
-            link = "https://colab.research.google.com/github/PradyumnaKrishna/Colab-Hacks/blob/master/Colab%20RDP/Colab%20RDP.ipynb"
-            colab_autostart = """[Desktop Entry]
-Type=Application
-Name=Colab
-Exec=sh -c "sensible-browser {}"
-Icon=
-Comment=Open a predefined notebook at session signin.
-X-GNOME-Autostart-enabled=true""".format(link)
-            with open(f"/home/{user}/.config/autostart/colab.desktop", "w") as f:
-                f.write(colab_autostart)
-            os.system(f"chmod +x /home/{user}/.config/autostart/colab.desktop")
-            os.system(f"chown {user}:{user} /home/{user}/.config")
-
         os.system(f"adduser {user} chrome-remote-desktop")
         command = f"{CRP} --pin={Pin}"
         os.system(f"su - {user} -c '{command}'")

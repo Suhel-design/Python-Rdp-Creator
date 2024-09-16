@@ -22,7 +22,7 @@ print(f"User created and configured having username `{username}` and password `{
 #Run in cell 2
 
 
-print("RRP: Visit http://remotedesktop.google.com/headless and copy the command after Authentication")
+print("CRP: Visit http://remotedesktop.google.com/headless and copy the command after Authentication")
 
 CRP = input("Enter your CRP: ")
 

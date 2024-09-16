@@ -13,5 +13,7 @@ wget https://raw.githubusercontent.com/Suhel-design/Python-Rdp-Creator/main/run.
 python3 run.py
 ```
 **Fill in the Requirement ask the Run file**
+1. Enter your CRP: Visit http://remotedesktop.google.com/headless and copy the command after Authentication and paste
+2. Enter Pin (more or equal to 6 digits): 123456 (type: "integer")
 
 **RDP created succesfully move to** https://remotedesktop.google.com/access

@@ -1,8 +1,9 @@
+# @title Not use Code
 import os
 import subprocess
 
-username = "user" 
-password = "root" 
+username = "user"
+password = "root"
 
 print("Creating User and Setting it up")
 
@@ -44,32 +45,32 @@ class CRD:
     def installCRD():
         print("Installing Chrome Remote Desktop")
         subprocess.run(['wget', 'https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb'], stdout=subprocess.PIPE)
-        subprocess.run(['sudo','dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'], stdout=subprocess.PIPE)
-        subprocess.run(['sudo','apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
+        subprocess.run(['dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'], stdout=subprocess.PIPE)
+        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
 
     @staticmethod
     def installDesktopEnvironment():
         print("Installing Desktop Environment")
         os.system("export DEBIAN_FRONTEND=noninteractive")
-        os.system("sudo apt install --assume-yes xfce4 desktop-base xfce4-terminal")
+        os.system("apt install --assume-yes xfce4 desktop-base xfce4-terminal")
         os.system("bash -c 'echo \"exec /etc/X11/Xsession /usr/bin/xfce4-session\" > /etc/chrome-remote-desktop-session'")
-        os.system("sudo apt remove --assume-yes gnome-terminal")
-        os.system("sudo apt install --assume-yes xscreensaver")
+        os.system("apt remove --assume-yes gnome-terminal")
+        os.system("apt install --assume-yes xscreensaver")
         os.system("systemctl disable lightdm.service")
 
     @staticmethod
     def installGoogleChorme():
         print("Installing Google Chrome")
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
-        subprocess.run(['sudo',"dpkg", "--install", "google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
-        subprocess.run(['sudo','apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
+        subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
+        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
 
     @staticmethod
     def installblender3():
         print("Installing blender 3.2.2")
         subprocess.run(["wget", "https://download.blender.org/release/Blender3.2/blender-3.2.2-linux-x64.tar.xz"], stdout=subprocess.PIPE)
-        subprocess.run(['sudo','apt', 'install', 'xz-utils'], stdout=subprocess.PIPE)
-        subprocess.run(['sudo','tar', '-xf', '/content/blender-3.2.2-linux-x64.tar.xz'], stdout=subprocess.PIPE)
+        subprocess.run(['apt', 'install', 'xz-utils'], stdout=subprocess.PIPE)
+        subprocess.run(['tar', '-xf', '/content/blender-3.2.2-linux-x64.tar.xz'], stdout=subprocess.PIPE)
 
     @staticmethod
     def installnvidiadriver():
@@ -77,17 +78,18 @@ class CRD:
         #subprocess.run(['apt', '-get', 'install', 'linux-headers']stdout=subprocess.PIPE)
         #subprocess.run(['distribution','=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e', 's/\.//g')]stdout=subprocess.PIPE)
         subprocess.run(["wget", "https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/cuda-keyring_1.0-1_all.deb"], stdout=subprocess.PIPE)
-        subprocess.run(['sudo',"dpkg", "-i" "cuda-keyring_1.0-1_all.deb"], stdout=subprocess.PIPE)
-        subprocess.run(['sudo','apt', '-get', 'update'], stdout=subprocess.PIPE)
-        subprocess.run(['sudo','apt', '-get', '-y', 'install', 'cuda-drivers'], stdout=subprocess.PIPE)
+        subprocess.run(["dpkg", "-i" "cuda-keyring_1.0-1_all.deb"], stdout=subprocess.PIPE)
+        subprocess.run(['apt', '-get', 'update'], stdout=subprocess.PIPE)
+        subprocess.run(['apt', '-get', '-y', 'install', 'cuda-drivers'], stdout=subprocess.PIPE)
 
 
     @staticmethod
     def finish(user):
         print("Finalizing")
-        os.system(f"adduser $(hostname) chrome-remote-desktop")
+        
+        os.system(f"adduser {user} chrome-remote-desktop")
         command = f"{CRP} --pin={Pin}"
-        os.system(f"su - $(hostname) -c '{command}'")
+        os.system(f"su - {user} -c '{command}'")
         os.system("service chrome-remote-desktop start")
 
 
